@@ -1,10 +1,6 @@
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
-
 public class PlacementObject extends GameObject {	
 	static PlacementObject placementObject = null;
+	static TurrentType t = null;
 	
 	public PlacementObject(TurrentType t) {
 		if(placementObject != null)
@@ -15,18 +11,30 @@ public class PlacementObject extends GameObject {
 		
 		switch(t) {
 			case BasicTurrent:
-				image = new BufferedImage(25, 25, BufferedImage.TYPE_3BYTE_BGR);
-				Graphics2D g2d = image.createGraphics();
-		
-			    g2d.setColor(Color.gray);
-			    g2d.fill(new Ellipse2D.Float(0, 0, 25, 25));
-			    g2d.dispose();
+				image = Image.toGray(BasicTurrent.defaultImage());
 		    break;
 			case AreaTurrent:
+				image = Image.toGray(AreaTurrent.defaultImage());
 				break;
 			default:
 				break;
 		}
+	}
+	
+	public void place() {
+		switch(t) {
+			case BasicTurrent:
+				Game.instantiate(new BasicTurrent(Grid.snap(position)));
+		    break;
+			case AreaTurrent:
+				Game.instantiate(new AreaTurrent(Grid.snap(position)));
+				break;
+			default:
+				break;
+		}
+		
+		if(!Input.shift)
+			Game.destroy(this);
 	}
 	
 	public void instantiate() {

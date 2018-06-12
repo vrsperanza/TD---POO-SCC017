@@ -10,6 +10,7 @@ public class Input implements MouseListener{
 	public static Point canvasPosition;
 	public static Point mousePosition;
 	
+	public static boolean shift = false;
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
