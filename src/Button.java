@@ -44,6 +44,9 @@ public class Button extends GameObject {
 				case 1:
 					Game.instantiate(new PlacementObject(ObjectType.AreaTurrent));
 					break;
+				case 2:
+					Game.instantiate(new PlacementObject(ObjectType.BarricadeTurrent));
+					break;
 				default:
 					System.out.println("Button ID: " + id + " is not mapped inside Button.java");
 					break;

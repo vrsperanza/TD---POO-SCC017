@@ -4,10 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class BasicTurrent extends GameObject {
-	float rangeSquared = (6*Grid.size)*(6*Grid.size);
-	double coolDown = 1;
-	int damage = 10;
+public class BasicTurrent extends Turrent {
 	
 	private double currentCoolDown = 1;
 	
@@ -23,23 +20,19 @@ public class BasicTurrent extends GameObject {
 	public BasicTurrent(Point position) {
 		this.position = position;
 		image = defaultImage();
+		
+		health = 100;
+		damage = 15;
+		coolDown = 1;
+		rangeSquared = (6*Grid.size)*(6*Grid.size);
 	}
 	
 	public void loop() {
+		super.loop();
 		currentCoolDown -= Game.deltaTime;
 		
-		if(Input.rightMousePress) {
-			Point mousePos = Input.mousePosition;
-			if( mousePos.x > position.x &&
-				mousePos.x < position.x + image.getWidth() &&
-				mousePos.y > position.y &&
-				mousePos.y < position.y + image.getHeight()) {
-				Game.destroy(this);
-			}
-		}
-		
 		if(currentCoolDown <= 0) {
-			currentCoolDown = coolDown;
+			currentCoolDown += coolDown;
 			int closestDistanceSquared = Integer.MAX_VALUE;
 			Enemy closestEnemy = null;
 			for(Enemy enemy : Game.enemies) {

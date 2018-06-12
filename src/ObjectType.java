@@ -1,4 +1,4 @@
 
 public enum ObjectType {
-    BasicTurrent, AreaTurrent, Enemy
+    BasicTurrent, AreaTurrent, BarricadeTurrent, Enemy
 };

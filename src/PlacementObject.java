@@ -17,8 +17,11 @@ public class PlacementObject extends GameObject {
 			case AreaTurrent:
 				image = Image.toGray(AreaTurrent.defaultImage());
 				break;
+			case BarricadeTurrent:
+				image = Image.toGray(BarricadeTurrent.defaultImage());
+				break;
 			case Enemy:
-				image = Image.toGray(Enemy.defaultImage());
+				image = Image.toGray(BasicEnemy.defaultImage());
 				break;
 			default:
 				break;
@@ -26,6 +29,12 @@ public class PlacementObject extends GameObject {
 	}
 	
 	public void place() {
+		for(GameObject g : Game.gameObjects) {
+			if(g != this && Grid.intersect(position, g.position)) {
+				return;
+			}
+		}
+		
 		switch(objectType) {
 			case BasicTurrent:
 				Game.instantiate(new BasicTurrent(Grid.snap(position)));
@@ -33,8 +42,11 @@ public class PlacementObject extends GameObject {
 			case AreaTurrent:
 				Game.instantiate(new AreaTurrent(Grid.snap(position)));
 				break;
+			case BarricadeTurrent:
+				Game.instantiate(new BarricadeTurrent(Grid.snap(position)));
+				break;
 			case Enemy:
-				Game.instantiate(new Enemy(Grid.snap(position)));
+				Game.instantiate(new BasicEnemy(Grid.snap(position)));
 				break;
 			default:
 				System.out.println("ObjectType: " + objectType + " is not mapped inside PlacementObject.java");

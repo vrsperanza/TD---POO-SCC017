@@ -12,28 +12,34 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class Game implements Runnable{
-	static HashSet<Enemy> enemies = new HashSet<Enemy>();
+public class Game{
+	static HashSet<Enemy> enemies;
+	static HashSet<Turrent> turrents;
+	static Target target;
 	
-	static HashSet<GameObject> gameObjects = new HashSet<GameObject>();
-	static Queue<GameObject> toDestroy = new LinkedList<GameObject>();
-	static Queue<GameObject> toInstantiate = new LinkedList<GameObject>();
-	LinkedList<Button> buttons = new LinkedList<Button>();
+	static HashSet<GameObject> gameObjects;
+	static Queue<GameObject> toDestroy;
+	static Queue<GameObject> toInstantiate;
+	static LinkedList<Button> buttons;
 	
 	static Input input;
 	
 	static double deltaTime = 0;
 	
-	final int WIDTH = 1000;
-	final int HEIGHT = 700;
+	final static int WIDTH = 1000;
+	final static int HEIGHT = 700;
 	
-	JFrame frame;
-	Canvas canvas;
-	BufferStrategy bufferStrategy;
+	static JFrame frame;
+	static Canvas canvas;
+	static BufferStrategy bufferStrategy;
 	
 	public Game(){
-		buttons.add(new Button(new Point(20, 20), 0));
-		buttons.add(new Button(new Point(90, 20), 1));
+		enemies = new HashSet<Enemy>();
+		turrents = new HashSet<Turrent>();
+		gameObjects = new HashSet<GameObject>();
+		toDestroy = new LinkedList<GameObject>();
+		toInstantiate = new LinkedList<GameObject>();
+		buttons = new LinkedList<Button>();
 		
 		frame = new JFrame("Tower defence");
 		
@@ -60,9 +66,13 @@ public class Game implements Runnable{
 		canvas.requestFocus();
 	}
 	
-	public void run(){
+	public static void run(){
 		long lastLoopTime = System.nanoTime();
-		
+		buttons.add(new Button(new Point(20, 20), 0));
+		buttons.add(new Button(new Point(90, 20), 1));
+		buttons.add(new Button(new Point(160, 20), 2));
+		target = new Target(Grid.snap(WIDTH/2, HEIGHT/2));
+		instantiate(target);
 		
 		while(true){
 			long currLoopTime = System.nanoTime();
@@ -99,7 +109,7 @@ public class Game implements Runnable{
 		toDestroy.add(g);
 	}
 	
-	private void render() {
+	private static void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -112,10 +122,14 @@ public class Game implements Runnable{
 		g.dispose();
 		bufferStrategy.show();
 	}
+
+	public static void over() {
+		System.out.println("GAME OVER");
+	}
 	
 	public static void main(String [] args){
-		Game game = new Game();
-		game.run();
+		new Game();
+		Game.run();
 	}
-
+	
 }
