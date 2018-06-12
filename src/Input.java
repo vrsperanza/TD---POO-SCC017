@@ -1,12 +1,15 @@
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Input implements MouseListener{
-	Queue<Point> mousePresses = new LinkedList<Point>();
+	Queue<MouseEvent> mousePresses = new LinkedList<MouseEvent>();
+	public static Point canvasPosition;
+	public static Point mousePosition;
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -24,7 +27,7 @@ public class Input implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		mousePresses.add(new Point(e.getX(), e.getY()));
+		mousePresses.add(e);
 	}
 
 	@Override
@@ -33,11 +36,20 @@ public class Input implements MouseListener{
 	}
 	
 	public void process(){
+		mousePosition = MousePosition();
 		while(!mousePresses.isEmpty()){
-			Point p = mousePresses.poll();
-			Game.gameObjects.add(new GameObject(p.x, p.y));
+			MouseEvent e = mousePresses.poll();
+			if(e.getButton() == MouseEvent.BUTTON1)
+				Game.instantiate(new BasicTurrent(Grid.snap(e.getPoint())));
+			else
+				Game.instantiate(new PlacementObject(TurrentType.BasicTurrent));
 		}
 	}
 	
-	
+	private static Point MousePosition() {
+		Point mousePosition = MouseInfo.getPointerInfo().getLocation();
+		mousePosition.x -= canvasPosition.x;
+		mousePosition.y -= canvasPosition.y;
+		return mousePosition;
+	}
 }

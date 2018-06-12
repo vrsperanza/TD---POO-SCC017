@@ -1,15 +1,20 @@
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
 public class Game implements Runnable{
-	static HashSet<GameObject> gameObjects;
+	static HashSet<GameObject> gameObjects = new HashSet<GameObject>();
+	static Queue<GameObject> toDestroy = new LinkedList<GameObject>();
+	static Queue<GameObject> toInstantiate = new LinkedList<GameObject>();
 	
 	static Input input;
 	
@@ -44,7 +49,8 @@ public class Game implements Runnable{
 		
 		canvas.createBufferStrategy(2);
 		bufferStrategy = canvas.getBufferStrategy();
-		
+
+		Input.canvasPosition = canvas.getLocationOnScreen();
 		canvas.requestFocus();
 	}
 	
@@ -54,24 +60,42 @@ public class Game implements Runnable{
 		
 		while(true){
 			long currLoopTime = System.nanoTime();
-			deltaTime = (currLoopTime - lastLoopTime);;
+			deltaTime = (currLoopTime - lastLoopTime) * 1e-9;
 			lastLoopTime = currLoopTime;
 			
 			input.process();
 			render();
 			for(GameObject object : gameObjects)
 				object.loop();
+			while(!toDestroy.isEmpty()) {
+				GameObject g = toDestroy.poll();
+				gameObjects.remove(g);
+				g.destroy();
+			}
+			while(!toInstantiate.isEmpty()) {
+				GameObject g = toInstantiate.poll();
+				gameObjects.add(g);
+				g.instantiate();
+			}
 		}
+	}
+	
+	public static void instantiate(GameObject g) {
+		toInstantiate.add(g);
+	}
+	
+	public static void destroy(GameObject g) {
+		toDestroy.add(g);
 	}
 	
 	private void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
-		g.clearRect(0, 0, WIDTH, HEIGHT);
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		render(g);
 		g.dispose();
 		bufferStrategy.show();
 	}
-	
 	
 	protected void render(Graphics2D g){
 		for(GameObject object : gameObjects)
@@ -79,7 +103,6 @@ public class Game implements Runnable{
 	}
 	
 	public static void main(String [] args){
-		gameObjects = new HashSet<GameObject>();
 		Game game = new Game();
 		game.run();
 	}
