@@ -12,4 +12,8 @@ public abstract class GameObject {
 	public void loop(){ }
 	
 	public void destroy(){ }
+	
+	public int distanceSquared(GameObject other) {
+		return (other.position.x-position.x)*(other.position.x-position.x) + (other.position.y-position.y)*(other.position.y-position.y);
+	}
 }

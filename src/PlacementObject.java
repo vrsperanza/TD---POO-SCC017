@@ -1,20 +1,24 @@
 public class PlacementObject extends GameObject {	
 	static PlacementObject placementObject = null;
-	static TurrentType t = null;
+	static ObjectType objectType = null;
 	
-	public PlacementObject(TurrentType t) {
+	public PlacementObject(ObjectType objectType) {
 		if(placementObject != null)
 			Game.destroy(placementObject);
 		
+		PlacementObject.objectType = objectType;
 		placementObject = this;
 		position = Input.mousePosition;
 		
-		switch(t) {
+		switch(objectType) {
 			case BasicTurrent:
 				image = Image.toGray(BasicTurrent.defaultImage());
 		    break;
 			case AreaTurrent:
 				image = Image.toGray(AreaTurrent.defaultImage());
+				break;
+			case Enemy:
+				image = Image.toGray(Enemy.defaultImage());
 				break;
 			default:
 				break;
@@ -22,14 +26,18 @@ public class PlacementObject extends GameObject {
 	}
 	
 	public void place() {
-		switch(t) {
+		switch(objectType) {
 			case BasicTurrent:
 				Game.instantiate(new BasicTurrent(Grid.snap(position)));
 		    break;
 			case AreaTurrent:
 				Game.instantiate(new AreaTurrent(Grid.snap(position)));
 				break;
+			case Enemy:
+				Game.instantiate(new Enemy(Grid.snap(position)));
+				break;
 			default:
+				System.out.println("ObjectType: " + objectType + " is not mapped inside PlacementObject.java");
 				break;
 		}
 		
@@ -42,7 +50,13 @@ public class PlacementObject extends GameObject {
 	}
 	
 	public void loop() {
-		position = Input.mousePosition;
+		position = Grid.snap(Input.mousePosition);
+		if(Input.mousePress)
+			place();
+		if(Input.rightMousePress) {
+			Game.destroy(this);
+			placementObject = null;
+		}
 	}
 	
 	public void destroy() {
