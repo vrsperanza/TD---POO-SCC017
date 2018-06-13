@@ -152,8 +152,7 @@ public class Game{
 		
 		spawner = new Spawner();
 		
-		//money = 500;
-		money = 500;
+		money = 1000;
 		
 		run();
 	}

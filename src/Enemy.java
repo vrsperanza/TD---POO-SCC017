@@ -11,7 +11,7 @@ public abstract class Enemy extends GameObject {
 	public int seekRangeSquared = (6*Grid.size)*(6*Grid.size);
 	public int harmRangeSquared = (2*Grid.size)*(2*Grid.size);
 	double harmCoolDown = 1;
-	private double currentHarmCoolDown = 1;
+	private double currentHarmCoolDown = 0;
 	private boolean inHarmRange = false;
 	private Turrent target = null;
 	
