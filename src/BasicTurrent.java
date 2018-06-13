@@ -11,13 +11,13 @@ public class BasicTurrent extends Turrent {
 		image = defaultImage();
 
 		health = 100;
-		damage = 10;
+		damage = 20;
 		coolDown = 1;
 		maxHealth = 100;
 		regenPerSecond = 1;
 		cost = 200;
 		
-		rangeSquared = (6*Grid.size)*(6*Grid.size);
+		rangeSquared = (8*Grid.size)*(8*Grid.size);
 	}
 	
 	@Override

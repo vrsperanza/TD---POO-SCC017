@@ -17,7 +17,7 @@ public class BasicEnemy extends Enemy {
 	BasicEnemy() {
 		super();
 		health = 100;
-		speed = 10;
+		speed = 50;
 		damage = 5;
 		value = 10;
 	}

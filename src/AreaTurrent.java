@@ -16,7 +16,7 @@ public class AreaTurrent extends Turrent {
 		regenPerSecond = 1;
 		cost = 300;
 		
-		rangeSquared = (4*Grid.size)*(4*Grid.size);
+		rangeSquared = (5*Grid.size)*(5*Grid.size);
 	}
 	
 	@Override

@@ -87,11 +87,11 @@ public class Input implements MouseListener, KeyListener{
 
 				case KeyEvent.VK_UP:
 					Game.speed *= 1.1;
-					System.out.println(Game.speed);
+					System.out.println("Speed: " + Game.speed);
 				break;
 				case KeyEvent.VK_DOWN:
 					Game.speed /= 1.1;
-					System.out.println(Game.speed);
+					System.out.println("Speed: " + Game.speed);
 				break;
 
 				case KeyEvent.VK_1:
@@ -105,6 +105,10 @@ public class Input implements MouseListener, KeyListener{
 				break;
 				case KeyEvent.VK_4:
 					Game.instantiate(new PlacementObject(ObjectType.Enemy));
+				break;
+				
+				case KeyEvent.VK_SPACE:
+					Game.start();
 				break;
 			}
 		}

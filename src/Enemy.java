@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 
 public abstract class Enemy extends GameObject {
 	int health;
@@ -12,7 +11,6 @@ public abstract class Enemy extends GameObject {
 	public int seekRangeSquared = (6*Grid.size)*(6*Grid.size);
 	public int harmRangeSquared = (2*Grid.size)*(2*Grid.size);
 	double harmCoolDown = 1;
-	private double currentWalkCoolDown = 0.005;
 	private double currentHarmCoolDown = 1;
 	private boolean inHarmRange = false;
 	private Turrent target = null;

@@ -29,6 +29,8 @@ public abstract class Turrent extends GameObject{
 				mousePos.x < position.x + image.getWidth() &&
 				mousePos.y > position.y &&
 				mousePos.y < position.y + image.getHeight()) {
+				
+				Game.money += cost/2;
 				Game.destroy(this);
 			}
 		}

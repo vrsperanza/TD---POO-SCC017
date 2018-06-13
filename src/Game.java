@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,11 +25,11 @@ public class Game{
 	static LinkedList<Button> buttons;
 	
 	static Input input;
+	static Random random;
 
-	
-	static double elapsedTime = 0;
-	static double deltaTime = 0;
-	static double speed = 1;
+	static double elapsedTime;
+	static double deltaTime;
+	static double speed;
 	
 	final static int WIDTH = 1000;
 	final static int HEIGHT = 700;
@@ -40,13 +41,7 @@ public class Game{
 	static int money;
 	
 	public Game(){
-		enemies = new HashSet<Enemy>();
-		turrents = new HashSet<Turrent>();
-		gameObjects = new HashSet<GameObject>();
-		toDestroy = new LinkedList<GameObject>();
-		toInstantiate = new LinkedList<GameObject>();
-		buttons = new LinkedList<Button>();
-		
+		random = new Random();
 		frame = new JFrame("Tower defence");
 		
 		JPanel panel = (JPanel) frame.getContentPane();
@@ -74,17 +69,6 @@ public class Game{
 	
 	public static void run(){
 		long lastLoopTime = System.nanoTime();
-		buttons.add(new Button(new Point(20, 20), 0));
-		buttons.add(new Button(new Point(90, 20), 1));
-		buttons.add(new Button(new Point(160, 20), 2));
-		target = new Target();
-		target.position = Grid.snap(20, HEIGHT/2);
-		instantiate(target);
-		
-		spawner = new Spawner();
-		
-		money = 1000;
-		
 		while(true){			
 			long currLoopTime = System.nanoTime();
 			deltaTime = (currLoopTime - lastLoopTime) * 1e-9;
@@ -143,11 +127,39 @@ public class Game{
 
 	public static void over() {
 		System.out.println("GAME OVER");
+		speed = 0;
+		System.out.println("Aperte espaço para reiniciar");
+	}
+	
+	public static void start() {
+		elapsedTime = 0;
+		deltaTime = 0;
+		speed = 1;
+		
+		enemies = new HashSet<Enemy>();
+		turrents = new HashSet<Turrent>();
+		gameObjects = new HashSet<GameObject>();
+		toDestroy = new LinkedList<GameObject>();
+		toInstantiate = new LinkedList<GameObject>();
+		buttons = new LinkedList<Button>();
+		
+		buttons.add(new Button(new Point(20, 20), 0));
+		buttons.add(new Button(new Point(90, 20), 1));
+		buttons.add(new Button(new Point(160, 20), 2));
+		target = new Target();
+		target.position = Grid.snap(20, HEIGHT/2);
+		instantiate(target);
+		
+		spawner = new Spawner();
+		
+		money = 500;
+		
+		run();
 	}
 	
 	public static void main(String [] args){
 		new Game();
-		Game.run();
+		Game.start();
 	}
 	
 }
