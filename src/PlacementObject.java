@@ -1,6 +1,9 @@
+import java.awt.image.BufferedImage;
+
 public class PlacementObject extends GameObject {	
 	static PlacementObject placementObject = null;
 	static ObjectType objectType = null;
+	static GameObject toPlace = null;
 	
 	public PlacementObject(ObjectType objectType) {
 		if(placementObject != null)
@@ -12,20 +15,21 @@ public class PlacementObject extends GameObject {
 		
 		switch(objectType) {
 			case BasicTurrent:
-				image = Image.toGray(BasicTurrent.defaultImage());
-		    break;
+				toPlace = new BasicTurrent();
+				break;
 			case AreaTurrent:
-				image = Image.toGray(AreaTurrent.defaultImage());
+				toPlace = new AreaTurrent();
 				break;
 			case BarricadeTurrent:
-				image = Image.toGray(BarricadeTurrent.defaultImage());
+				toPlace = new BarricadeTurrent();
 				break;
 			case Enemy:
-				image = Image.toGray(BasicEnemy.defaultImage());
+				toPlace = new BasicEnemy();
 				break;
 			default:
 				break;
 		}
+		image = Image.toGray(toPlace.defaultImage());
 	}
 	
 	public void place() {
@@ -35,32 +39,20 @@ public class PlacementObject extends GameObject {
 			}
 		}
 		
-		switch(objectType) {
-			case BasicTurrent:
-				Game.instantiate(new BasicTurrent(Grid.snap(position)));
-		    break;
-			case AreaTurrent:
-				Game.instantiate(new AreaTurrent(Grid.snap(position)));
-				break;
-			case BarricadeTurrent:
-				Game.instantiate(new BarricadeTurrent(Grid.snap(position)));
-				break;
-			case Enemy:
-				Game.instantiate(new BasicEnemy(Grid.snap(position)));
-				break;
-			default:
-				System.out.println("ObjectType: " + objectType + " is not mapped inside PlacementObject.java");
-				break;
-		}
+		toPlace.position = Grid.snap(position);
+		Game.instantiate(toPlace);
 		
-		if(!Input.shift)
-			Game.destroy(this);
+		Game.destroy(this);
+		if(Input.shift)
+			Game.instantiate(new PlacementObject(objectType));
 	}
-	
+
+	@Override
 	public void instantiate() {
 		
 	}
-	
+
+	@Override
 	public void loop() {
 		position = Grid.snap(Input.mousePosition);
 		if(Input.mousePress)
@@ -70,8 +62,15 @@ public class PlacementObject extends GameObject {
 			placementObject = null;
 		}
 	}
-	
+
+	@Override
 	public void destroy() {
 		
+	}
+
+	@Override
+	public BufferedImage defaultImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

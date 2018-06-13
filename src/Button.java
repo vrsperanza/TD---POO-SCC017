@@ -9,7 +9,15 @@ public class Button extends GameObject {
 	BufferedImage image;
 	boolean pressed = false;
 	boolean trigger = false;
-	public static BufferedImage defaultImage() {
+
+	public Button(Point position, int id) {
+		this.position = position;
+		this.id = id;
+		image = defaultImage();
+	}
+	
+	@Override
+	public BufferedImage defaultImage() {
 		BufferedImage image = new BufferedImage(50, 30, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.LIGHT_GRAY);
@@ -17,13 +25,8 @@ public class Button extends GameObject {
 	    g2d.dispose();
 	    return image;		
 	}
-	
-	public Button(Point position, int id) {
-		this.position = position;
-		this.id = id;
-		image = defaultImage();
-	}
-	
+
+	@Override
 	public void loop() {
 		Point mousePos = Input.mousePosition;
 		pressed = trigger;
@@ -52,5 +55,15 @@ public class Button extends GameObject {
 					break;
 			}
 		}
+	}
+
+	@Override
+	public void instantiate() {
+		
+	}
+
+	@Override
+	public void destroy() {
+		
 	}
 }

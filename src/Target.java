@@ -5,7 +5,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class Target extends Turrent {	
-	public static BufferedImage defaultImage() {
+	public BufferedImage defaultImage() {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.white);
@@ -14,8 +14,7 @@ public class Target extends Turrent {
 	    return image;		
 	}
 	
-	public Target(Point position) {
-		this.position = position;
+	public Target() {
 		image = defaultImage();
 		
 		health = 100;

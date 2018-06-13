@@ -71,7 +71,8 @@ public class Game{
 		buttons.add(new Button(new Point(20, 20), 0));
 		buttons.add(new Button(new Point(90, 20), 1));
 		buttons.add(new Button(new Point(160, 20), 2));
-		target = new Target(Grid.snap(WIDTH/2, HEIGHT/2));
+		target = new Target();
+		target.position = Grid.snap(WIDTH/2, HEIGHT/2);
 		instantiate(target);
 		
 		while(true){

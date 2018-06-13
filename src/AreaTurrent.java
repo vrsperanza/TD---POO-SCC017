@@ -1,13 +1,25 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class AreaTurrent extends Turrent {	
 	private double currentCoolDown = 1;
+
+	public AreaTurrent() {
+		image = defaultImage();
+
+		health = 100;
+		damage = 10;
+		coolDown = 1;
+		maxHealth = 100;
+		regenPerSecond = 1;
+		
+		rangeSquared = (4*Grid.size)*(4*Grid.size);
+	}
 	
-	public static BufferedImage defaultImage() {
+	@Override
+	public BufferedImage defaultImage() {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.blue);
@@ -16,16 +28,7 @@ public class AreaTurrent extends Turrent {
 	    return image;		
 	}
 	
-	public AreaTurrent(Point position) {
-		this.position = position;
-		image = defaultImage();
-
-		health = 100;
-		damage = 10;
-		coolDown = 1;
-		rangeSquared = (4*Grid.size)*(4*Grid.size);
-	}
-	
+	@Override
 	public void loop() {
 		super.loop();
 		currentCoolDown -= Game.deltaTime;

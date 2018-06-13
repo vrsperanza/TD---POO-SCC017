@@ -1,5 +1,3 @@
-import java.awt.Point;
-
 public class BasicEnemy extends Enemy {
 	private double currentWalkCoolDown = 0.01;
 	private double currentHarmCoolDown = 1;
@@ -9,8 +7,8 @@ public class BasicEnemy extends Enemy {
 	private Turrent target = null;
 	
 	
-	BasicEnemy(Point position) {
-		super(position);
+	BasicEnemy() {
+		super();
 	}
 
 	double walkXAccum = 0;
