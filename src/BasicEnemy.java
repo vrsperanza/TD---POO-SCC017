@@ -1,5 +1,5 @@
 public class BasicEnemy extends Enemy {
-	private double currentWalkCoolDown = 0.01;
+	private double currentWalkCoolDown = 0.005;
 	private double currentHarmCoolDown = 1;
 	
 	private boolean inHarmRange = false;
@@ -67,7 +67,6 @@ public class BasicEnemy extends Enemy {
 				
 				if(Game.turrents.contains(target)) {
 					target.health -= damage;
-					System.out.println(target.health);
 				}
 				else {
 					target = null;

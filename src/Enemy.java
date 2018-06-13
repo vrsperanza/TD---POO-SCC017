@@ -11,6 +11,7 @@ public abstract class Enemy extends GameObject {
 	public int harmRangeSquared = (2*Grid.size)*(2*Grid.size);
 	double walkCoolDown = 0.001;
 	double harmCoolDown = 1;
+	int value = 10;
 	
 	Graphics2D imageGraphics;
 
@@ -47,6 +48,8 @@ public abstract class Enemy extends GameObject {
 
 	@Override
 	public void destroy() {
+		Game.money += value;
+		System.out.println("Money: " + Game.money);
 		Game.enemies.remove(this);
 	}
 }

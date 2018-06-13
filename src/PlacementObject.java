@@ -33,13 +33,23 @@ public class PlacementObject extends GameObject {
 	}
 	
 	public void place() {
-		for(GameObject g : Game.gameObjects) {
-			if(g != this && Grid.intersect(position, g.position)) {
+		for(GameObject g : Game.gameObjects)
+			if(g != this && Grid.intersect(position, g.position))
 				return;
-			}
+				
+		toPlace.position = Grid.snap(position);
+		
+		
+		if(toPlace instanceof Turrent) {
+			Turrent turrent = (Turrent)toPlace;
+			if(Game.money < turrent.cost)
+				return;
+			
+			Game.money -= turrent.cost;
+			
+			System.out.println("MONEY: " + Game.money);
 		}
 		
-		toPlace.position = Grid.snap(position);
 		Game.instantiate(toPlace);
 		
 		Game.destroy(this);

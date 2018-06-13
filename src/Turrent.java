@@ -9,6 +9,7 @@ public abstract class Turrent extends GameObject{
 	int health;
 	int maxHealth;
 	double regenPerSecond;
+	int cost;
 	
 	private double healthAddAccum;
 

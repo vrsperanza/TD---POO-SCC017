@@ -13,13 +13,16 @@ public class BarricadeTurrent extends Turrent {
 		maxHealth = health;
 		regenPerSecond = 2;
 		rangeSquared = (4*Grid.size)*(4*Grid.size);
+		
+		cost = 25;
+		
 	}
 	
 	@Override
 	public BufferedImage defaultImage() {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
-	    g2d.setColor(Color.CYAN);
+	    g2d.setColor(Color.LIGHT_GRAY);
 	    g2d.fillRect(1, 1, Grid.size-3, Grid.size-3);
 	    g2d.dispose();
 	    return image;		

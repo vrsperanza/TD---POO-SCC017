@@ -33,6 +33,8 @@ public class Game{
 	static Canvas canvas;
 	static BufferStrategy bufferStrategy;
 	
+	static int money;
+	
 	public Game(){
 		enemies = new HashSet<Enemy>();
 		turrents = new HashSet<Turrent>();
@@ -72,8 +74,9 @@ public class Game{
 		buttons.add(new Button(new Point(90, 20), 1));
 		buttons.add(new Button(new Point(160, 20), 2));
 		target = new Target();
-		target.position = Grid.snap(WIDTH/2, HEIGHT/2);
+		target.position = Grid.snap(20, HEIGHT/2);
 		instantiate(target);
+		money = 1000;
 		
 		while(true){
 			long currLoopTime = System.nanoTime();

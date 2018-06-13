@@ -16,6 +16,7 @@ public class BasicTurrent extends Turrent {
 		damage = 15;
 		coolDown = 1;
 		rangeSquared = (6*Grid.size)*(6*Grid.size);
+		cost = 50;
 	}
 	
 	@Override
