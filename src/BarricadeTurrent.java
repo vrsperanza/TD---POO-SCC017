@@ -20,7 +20,7 @@ public class BarricadeTurrent extends Turrent {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.LIGHT_GRAY);
-	    g2d.fillRect(1, 1, Grid.size-3, Grid.size-3);
+	    g2d.fillRect(1, 1, Grid.size-2, Grid.size-2);
 	    g2d.dispose();
 	    return image;		
 	}

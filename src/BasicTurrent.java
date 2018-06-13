@@ -25,7 +25,7 @@ public class BasicTurrent extends Turrent {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.yellow);
-	    g2d.fill(new Ellipse2D.Float(0, 0, Grid.size, Grid.size));
+	    g2d.fill(new Ellipse2D.Float(1, 1, Grid.size-3, Grid.size-3));
 	    g2d.dispose();
 	    return image;		
 	}

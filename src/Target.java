@@ -8,7 +8,7 @@ public class Target extends Turrent {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 	    g2d.setColor(Color.white);
-	    g2d.fill(new Ellipse2D.Float(3,3,12,12));
+	    g2d.fill(new Ellipse2D.Float(3,3,Grid.size-7,Grid.size-7));
 	    g2d.dispose();
 	    return image;		
 	}
