@@ -8,14 +8,11 @@ public class BarricadeTurrent extends Turrent {
 		image = defaultImage();
 
 		health = 300;
-		damage = 0;
+		damage = 10;
 		coolDown = 1;
-		maxHealth = health;
-		regenPerSecond = 2;
-		rangeSquared = (4*Grid.size)*(4*Grid.size);
-		
-		cost = 25;
-		
+		maxHealth = 100;
+		regenPerSecond = 3;
+		cost = 100;	
 	}
 	
 	@Override

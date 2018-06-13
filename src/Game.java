@@ -16,6 +16,7 @@ public class Game{
 	static HashSet<Enemy> enemies;
 	static HashSet<Turrent> turrents;
 	static Target target;
+	static Spawner spawner;
 	
 	static HashSet<GameObject> gameObjects;
 	static Queue<GameObject> toDestroy;
@@ -23,8 +24,11 @@ public class Game{
 	static LinkedList<Button> buttons;
 	
 	static Input input;
+
 	
+	static double elapsedTime = 0;
 	static double deltaTime = 0;
+	static double speed = 1;
 	
 	final static int WIDTH = 1000;
 	final static int HEIGHT = 700;
@@ -76,15 +80,25 @@ public class Game{
 		target = new Target();
 		target.position = Grid.snap(20, HEIGHT/2);
 		instantiate(target);
+		
+		spawner = new Spawner();
+		
 		money = 1000;
 		
-		while(true){
+		while(true){			
 			long currLoopTime = System.nanoTime();
 			deltaTime = (currLoopTime - lastLoopTime) * 1e-9;
+			deltaTime *= speed;
+			elapsedTime += deltaTime;
+			
 			lastLoopTime = currLoopTime;
+			
 			
 			input.process();
 			render();
+
+			spawner.spawn();
+			
 			for(GameObject button : buttons)
 				button.loop();
 			

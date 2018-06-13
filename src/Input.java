@@ -85,6 +85,15 @@ public class Input implements MouseListener, KeyListener{
 					shift = true;
 				break;
 
+				case KeyEvent.VK_UP:
+					Game.speed *= 1.1;
+					System.out.println(Game.speed);
+				break;
+				case KeyEvent.VK_DOWN:
+					Game.speed /= 1.1;
+					System.out.println(Game.speed);
+				break;
+
 				case KeyEvent.VK_1:
 					Game.instantiate(new PlacementObject(ObjectType.BasicTurrent));
 				break;

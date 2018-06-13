@@ -4,14 +4,18 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public abstract class Enemy extends GameObject {
-	int health = 100;
-	int speed = 10;
-	int damage = 5;
+	int health;
+	int speed;
+	int damage;
+	int value;
+	
 	public int seekRangeSquared = (6*Grid.size)*(6*Grid.size);
 	public int harmRangeSquared = (2*Grid.size)*(2*Grid.size);
-	double walkCoolDown = 0.001;
 	double harmCoolDown = 1;
-	int value = 10;
+	private double currentWalkCoolDown = 0.005;
+	private double currentHarmCoolDown = 1;
+	private boolean inHarmRange = false;
+	private Turrent target = null;
 	
 	Graphics2D imageGraphics;
 
@@ -19,15 +23,25 @@ public abstract class Enemy extends GameObject {
 		image = defaultImage();
 		imageGraphics = image.createGraphics();
 	}
+
+	private double walkXAccum = 0;
+	private double walkYAccum = 0;
 	
-	@Override
-	public BufferedImage defaultImage() {
-		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
-		Graphics2D g2d = image.createGraphics();
-	    g2d.setColor(new Color(255, 100, 0));
-	    g2d.fill(new Ellipse2D.Float(4,4,12,12));
-	    g2d.dispose();
-	    return image;		
+	public void walkTo(Turrent turrent) {
+		double dirX = turrent.position.x - position.x;
+		double dirY = turrent.position.y - position.y;
+		double sum = Math.abs(dirX) + Math.abs(dirY);
+		dirX /= sum;
+		dirY /= sum;
+		
+		walkXAccum += Game.deltaTime*speed*dirX;
+		walkYAccum += Game.deltaTime*speed*dirY;
+		
+		position.x += (int)walkXAccum;
+		position.y += (int)walkYAccum;
+		
+		walkXAccum -= (int)walkXAccum;
+		walkYAccum -= (int)walkYAccum;
 	}
 	
 	@Override
@@ -39,6 +53,42 @@ public abstract class Enemy extends GameObject {
 
 		imageGraphics.setColor(new Color(255*health/100, 100, 0));
 		imageGraphics.fill(new Ellipse2D.Float(4,4,12,12));
+		
+		if(!inHarmRange) {
+			int closestDistanceSquared = Integer.MAX_VALUE;
+			Turrent closestTurrent = null;
+			for(Turrent turrent : Game.turrents) {
+				if(turrent.distanceSquared(this) < closestDistanceSquared) {
+					closestTurrent = turrent;
+					closestDistanceSquared = turrent.distanceSquared(this);
+				}
+			}
+			
+			if(closestDistanceSquared < seekRangeSquared && closestDistanceSquared > harmRangeSquared) {
+				walkTo(closestTurrent);
+				
+			} else if(closestDistanceSquared <= harmRangeSquared) {
+				inHarmRange = true;
+				currentHarmCoolDown = harmCoolDown;
+				target = closestTurrent;
+			} else {
+				walkTo(Game.target);
+			}
+		}
+		else {
+			currentHarmCoolDown -= Game.deltaTime;
+			if(currentHarmCoolDown <= 0 && inHarmRange) {
+				currentHarmCoolDown += harmCoolDown;
+				
+				if(Game.turrents.contains(target)) {
+					target.health -= damage;
+				}
+				else {
+					target = null;
+					inHarmRange = false;
+				}
+			}
+		}
 	}
 
 	@Override
