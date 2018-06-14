@@ -19,10 +19,11 @@ public class BasicEnemy extends Enemy {
 	
 	BasicEnemy() {
 		super();
-		health = 100;
-		speed = 50;
+		health = 250;
+		maxHealth = health;
+		speed = 150;
 		damage = 7;
-		value = 10;
+		value = 20;
 	}
 
 	public void loop() {

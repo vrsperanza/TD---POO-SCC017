@@ -1,8 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 
 public abstract class Enemy extends GameObject {
+	int maxHealth;
 	int health;
 	int speed;
 	int damage;
@@ -14,12 +14,9 @@ public abstract class Enemy extends GameObject {
 	private double currentHarmCoolDown = 0;
 	private boolean inHarmRange = false;
 	private Turrent target = null;
-	
-	Graphics2D imageGraphics;
 
 	Enemy(){
 		image = defaultImage();
-		imageGraphics = image.createGraphics();
 	}
 
 	private double walkXAccum = 0;
@@ -49,8 +46,18 @@ public abstract class Enemy extends GameObject {
 			return;
 		}
 
-		imageGraphics.setColor(new Color(255*health/100, 100, 0));
-		imageGraphics.fill(new Ellipse2D.Float(4,4,12,12));
+		image = this.defaultImage();
+		if(health < maxHealth) {			
+			Graphics2D graphics = image.createGraphics();
+
+			graphics.setColor(Color.DARK_GRAY);
+			graphics.fillRect(0, Grid.size-6, Grid.size, 5);
+			
+			graphics.setColor(new Color(0, 153, 0));
+			graphics.fillRect(0, Grid.size-6, Grid.size * health/maxHealth, 5);
+			
+			graphics.dispose();
+		}
 		
 		if(!inHarmRange) {
 			int closestDistanceSquared = Integer.MAX_VALUE;

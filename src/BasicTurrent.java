@@ -12,7 +12,7 @@ public class BasicTurrent extends Turrent {
 
 		health = 100;
 		damage = 20;
-		coolDown = 1;
+		coolDown = 0.5;
 		maxHealth = 100;
 		regenPerSecond = 1;
 		cost = 200;

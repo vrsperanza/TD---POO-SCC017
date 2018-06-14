@@ -19,10 +19,11 @@ public class FastEnemy extends Enemy {
 	
 	FastEnemy() {
 		super();
-		health = 25;
-		speed = 200;
+		health = 100;
+		maxHealth = health;
+		speed = 600;
 		damage = 3;
-		value = 5;
+		value = 10;
 	}
 
 	public void loop() {

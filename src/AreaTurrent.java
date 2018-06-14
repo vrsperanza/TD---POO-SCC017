@@ -11,7 +11,7 @@ public class AreaTurrent extends Turrent {
 
 		health = 200;
 		damage = 10;
-		coolDown = 1;
+		coolDown = 0.5;
 		maxHealth = 200;
 		regenPerSecond = 2;
 		cost = 300;

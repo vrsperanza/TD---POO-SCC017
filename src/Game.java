@@ -116,10 +116,14 @@ public class Game{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
+		
 		for(GameObject object : gameObjects)
 			g.drawImage(object.image, null, object.position.x, object.position.y);
 		for(Button button : buttons)
 			g.drawImage(button.image, null, button.position.x, button.position.y);
+
+		g.setColor(Color.YELLOW);
+		g.drawString(String.valueOf(money), WIDTH-50, 25);
 		
 		g.dispose();
 		bufferStrategy.show();

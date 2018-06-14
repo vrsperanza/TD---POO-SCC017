@@ -11,7 +11,7 @@ public class BarricadeTurrent extends Turrent {
 		damage = 10;
 		coolDown = 1;
 		maxHealth = 500;
-		regenPerSecond = 3;
+		regenPerSecond = 5;
 		cost = 100;	
 	}
 	
