@@ -35,6 +35,7 @@ public class Game{
 
 	public static double elapsedTime;
 	public static double deltaTime;
+	public static double pauseSpeed;
 	public static double speed;
 	
 	final static int WIDTH = 1000;
@@ -51,7 +52,7 @@ public class Game{
 		frame = new JFrame("Tower defence");
 		
 		JPanel panel = (JPanel) frame.getContentPane();
-		panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		panel.setPreferredSize(new Dimension(WIDTH-10, HEIGHT-10));
 		panel.setLayout(null);
 		
 		canvas = new Canvas();
@@ -129,7 +130,9 @@ public class Game{
 			g.drawImage(button.image, null, button.position.x, button.position.y);
 
 		g.setColor(Color.YELLOW);
-		g.drawString(String.valueOf(money), WIDTH-50, 25);
+		g.drawString("   Money: " + String.valueOf(money), WIDTH-100, 25);
+		g.drawString("   Speed: " + String.format("%.02f", speed), WIDTH-100, 50);
+		g.drawString("Difficulty: " + String.format("%.02f", Spawner.difficulty), WIDTH-100, 75);
 		
 		g.dispose();
 		bufferStrategy.show();

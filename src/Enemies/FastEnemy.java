@@ -10,7 +10,7 @@ public class FastEnemy extends Enemy {
 	@Override
 	public BufferedImage defaultImage() {
 		int marginX = 3;
-		int marginY = 9;
+		int marginY = 6;
 		
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();

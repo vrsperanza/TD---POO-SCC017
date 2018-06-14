@@ -4,16 +4,14 @@ import java.awt.Point;
 import Enemies.*;
 
 public class Spawner {
-	double basicEnemyRate;
-	double fastEnemyRate;
-	double bigEnemyRate;
-	
+	public static double difficulty;
 	double basicEnemySpawn;
 	double fastEnemySpawn;
-	double bigEnemySpawn;
+	double bigEnemySpawn = 1;
+	double hugeEnemySpawn = 1;
 	
-	public float timeElapsedCurve() {
-		return (float)Game.elapsedTime/(float)(Game.elapsedTime+300);
+	public double timeElapsedCurve() {
+		return (double)Game.elapsedTime/(double)(Game.elapsedTime+300);
 	}
 	
 	public void spawn(Enemy enemy) {
@@ -22,17 +20,12 @@ public class Spawner {
 	}
 	
 	public void spawn() {
-		float difficulty = timeElapsedCurve();
+		difficulty = timeElapsedCurve();
 
-		System.out.println(difficulty);
-		
-		basicEnemyRate = 0.3 + 0.2*difficulty;
-		fastEnemyRate = 0.5*difficulty;
-		bigEnemyRate = -0.1 + 0.3*difficulty;
-
-		basicEnemySpawn += basicEnemyRate * Game.deltaTime;
-		fastEnemySpawn += fastEnemyRate * Game.deltaTime;
-		bigEnemySpawn += bigEnemyRate * Game.deltaTime;
+		basicEnemySpawn += (0.3 + 0.7*difficulty) * Game.deltaTime;
+		fastEnemySpawn += (Math.max(0, -0.1 + difficulty)) * Game.deltaTime;
+		bigEnemySpawn += (Math.max(0, -0.1 + 0.3*difficulty)) * Game.deltaTime;
+		hugeEnemySpawn += (Math.max(0, -0.1 + 0.2*difficulty)) * Game.deltaTime;
 		
 		if(basicEnemySpawn > 1) {
 			spawn(new BasicEnemy());
@@ -43,8 +36,13 @@ public class Spawner {
 			spawn(new FastEnemy());
 			fastEnemySpawn -= Game.random.nextDouble();
 		}
-		
+
 		if(bigEnemySpawn > 1) {
+			spawn(new BigEnemy());
+			bigEnemySpawn -= Game.random.nextDouble();
+		}
+		
+		if(hugeEnemySpawn > 1) {
 			spawn(new BigEnemy());
 			bigEnemySpawn -= Game.random.nextDouble();
 		}

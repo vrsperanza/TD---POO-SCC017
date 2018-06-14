@@ -107,9 +107,23 @@ public class Input implements MouseListener, KeyListener{
 				case KeyEvent.VK_3:
 					Game.instantiate(new PlacementObject(ObjectType.BarricadeTurrent));
 				break;
-				
+
 				case KeyEvent.VK_SPACE:
 					Game.start();
+				break;
+
+				case KeyEvent.VK_P:
+					double temp = Game.speed;
+					Game.speed = Game.pauseSpeed;
+					Game.pauseSpeed = temp;
+				break;
+				
+				case KeyEvent.VK_F1:
+					Game.money += 100;
+				break;
+				
+				case KeyEvent.VK_F2:
+					Game.elapsedTime += 60;
 				break;
 			}
 		}
