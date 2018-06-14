@@ -47,8 +47,6 @@ public class PlacementObject extends GameObject {
 				return;
 			
 			Game.money -= turrent.cost;
-			
-			System.out.println("MONEY: " + Game.money);
 		}
 		
 		Game.instantiate(toPlace);

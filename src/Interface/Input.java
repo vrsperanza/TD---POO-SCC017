@@ -108,7 +108,7 @@ public class Input implements MouseListener, KeyListener{
 					Game.instantiate(new PlacementObject(ObjectType.BarricadeTurrent));
 				break;
 
-				case KeyEvent.VK_SPACE:
+				case KeyEvent.VK_R:
 					Game.start();
 				break;
 

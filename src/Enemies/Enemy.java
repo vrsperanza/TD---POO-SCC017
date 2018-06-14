@@ -110,7 +110,6 @@ public abstract class Enemy extends GameObject {
 	@Override
 	public void destroy() {
 		Game.money += value;
-		System.out.println("Money: " + Game.money);
 		Game.enemies.remove(this);
 	}
 }

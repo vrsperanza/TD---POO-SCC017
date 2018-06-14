@@ -44,7 +44,7 @@ public class Spawner {
 		
 		if(hugeEnemySpawn > 1) {
 			spawn(new BigEnemy());
-			bigEnemySpawn -= Game.random.nextDouble();
+			hugeEnemySpawn -= Game.random.nextDouble();
 		}
 	}
 }
