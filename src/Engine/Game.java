@@ -1,3 +1,4 @@
+package Engine;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,14 +13,19 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Enemies.*;
+import Interface.*;
+import Turrents.*;
+
 
 public class Game{
-	static HashSet<Enemy> enemies;
-	static HashSet<Turrent> turrents;
-	static Target target;
+	public static HashSet<Enemy> enemies;
+	public static HashSet<Turrent> turrents;
+	public static Target target;
+	public static HashSet<GameObject> gameObjects;
+	
 	static Spawner spawner;
 	
-	static HashSet<GameObject> gameObjects;
 	static Queue<GameObject> toDestroy;
 	static Queue<GameObject> toInstantiate;
 	static LinkedList<Button> buttons;
@@ -27,9 +33,9 @@ public class Game{
 	static Input input;
 	static Random random;
 
-	static double elapsedTime;
-	static double deltaTime;
-	static double speed;
+	public static double elapsedTime;
+	public static double deltaTime;
+	public static double speed;
 	
 	final static int WIDTH = 1000;
 	final static int HEIGHT = 700;
@@ -38,7 +44,7 @@ public class Game{
 	static Canvas canvas;
 	static BufferStrategy bufferStrategy;
 	
-	static int money;
+	public static int money;
 	
 	public Game(){
 		random = new Random();

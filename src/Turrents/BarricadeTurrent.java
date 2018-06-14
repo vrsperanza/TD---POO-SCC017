@@ -1,6 +1,9 @@
+package Turrents;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import Engine.Grid;
 
 public class BarricadeTurrent extends Turrent {	
 

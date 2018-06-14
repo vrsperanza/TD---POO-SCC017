@@ -1,9 +1,15 @@
+package Enemies;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import Engine.Game;
+import Engine.GameObject;
+import Engine.Grid;
+import Turrents.Turrent;
+
 public abstract class Enemy extends GameObject {
+	public int health;
 	int maxHealth;
-	int health;
 	int speed;
 	int damage;
 	int value;

@@ -1,7 +1,10 @@
+package Enemies;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+
+import Engine.Grid;
 
 public class BigEnemy extends Enemy {
 	@Override
@@ -14,7 +17,7 @@ public class BigEnemy extends Enemy {
 	    return image;		
 	}
 	
-	BigEnemy() {
+	public BigEnemy() {
 		super();
 		health = 2000;
 		maxHealth = health;

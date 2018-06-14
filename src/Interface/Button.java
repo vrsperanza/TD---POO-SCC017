@@ -1,13 +1,18 @@
+package Interface;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import Engine.Game;
+import Engine.GameObject;
+import Engine.ObjectType;
+
 public class Button extends GameObject {
 	int id;
-	Point position;
-	BufferedImage image;
-	boolean pressed = false;
+	public Point position;
+	public BufferedImage image;
+	public boolean pressed = false;
 	boolean trigger = false;
 
 	public Button(Point position, int id) {

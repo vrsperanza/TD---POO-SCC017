@@ -1,7 +1,10 @@
+package Enemies;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+
+import Engine.Grid;
 
 public class BasicEnemy extends Enemy {
 	@Override
@@ -17,7 +20,7 @@ public class BasicEnemy extends Enemy {
 	    return image;	
 	}
 	
-	BasicEnemy() {
+	public BasicEnemy() {
 		super();
 		health = 250;
 		maxHealth = health;

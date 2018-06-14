@@ -1,3 +1,4 @@
+package Interface;
 import java.awt.Canvas;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -7,6 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import Engine.Game;
+import Engine.ObjectType;
 
 public class Input implements MouseListener, KeyListener{
 	Queue<MouseEvent> mousePresses = new LinkedList<MouseEvent>();
@@ -19,7 +23,7 @@ public class Input implements MouseListener, KeyListener{
 	public static boolean mousePress = false;
 	public static boolean rightMousePress = false;
 	public static Canvas canvas;
-	Input(Canvas canvas){
+	public Input(Canvas canvas){
 		Input.canvas = canvas;
 	}
 	
@@ -102,9 +106,6 @@ public class Input implements MouseListener, KeyListener{
 				break;
 				case KeyEvent.VK_3:
 					Game.instantiate(new PlacementObject(ObjectType.BarricadeTurrent));
-				break;
-				case KeyEvent.VK_4:
-					Game.instantiate(new PlacementObject(ObjectType.Enemy));
 				break;
 				
 				case KeyEvent.VK_SPACE:

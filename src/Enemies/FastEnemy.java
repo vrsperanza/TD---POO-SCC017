@@ -1,29 +1,35 @@
+package Enemies;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class Target extends Turrent {	
+import Engine.Grid;
+
+public class FastEnemy extends Enemy {
+	@Override
 	public BufferedImage defaultImage() {
+		int marginX = 3;
+		int marginY = 9;
+		
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
-	    g2d.setColor(Color.white);
-	    g2d.fill(new Ellipse2D.Float(3,3,Grid.size-7,Grid.size-7));
+	    g2d.setColor(new Color(255, 100, 0));
+	    g2d.fill(new Ellipse2D.Float(marginX,marginY,Grid.size-marginX-marginX-1,Grid.size-marginY-marginY-1));
 	    g2d.dispose();
 	    return image;		
 	}
 	
-	public Target() {
-		image = defaultImage();
-		
+	public FastEnemy() {
+		super();
 		health = 100;
 		maxHealth = health;
-		regenPerSecond = 1;
+		speed = 600;
+		damage = 3;
+		value = 10;
 	}
-	
+
 	public void loop() {
-		if(health <= 0)
-			Game.over();
 		super.loop();
 	}
 }

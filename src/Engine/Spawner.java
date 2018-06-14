@@ -1,4 +1,7 @@
+package Engine;
 import java.awt.Point;
+
+import Enemies.*;
 
 public class Spawner {
 	double basicEnemyRate;

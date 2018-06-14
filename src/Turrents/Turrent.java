@@ -1,15 +1,20 @@
+package Turrents;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import Engine.*;
+import Interface.*;
+
 public abstract class Turrent extends GameObject{
+	public int health;
+	
 	float rangeSquared;
 	double coolDown;
 	int damage;
-	int health;
 	int maxHealth;
 	double regenPerSecond;
-	int cost;
+	public int cost;
 	
 	private double healthAddAccum;
 

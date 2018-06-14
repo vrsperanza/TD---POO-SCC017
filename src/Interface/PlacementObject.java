@@ -1,4 +1,8 @@
+package Interface;
 import java.awt.image.BufferedImage;
+
+import Engine.*;
+import Turrents.*;
 
 public class PlacementObject extends GameObject {	
 	static PlacementObject placementObject = null;
@@ -22,9 +26,6 @@ public class PlacementObject extends GameObject {
 				break;
 			case BarricadeTurrent:
 				toPlace = new BarricadeTurrent();
-				break;
-			case Enemy:
-				toPlace = new BasicEnemy();
 				break;
 			default:
 				break;

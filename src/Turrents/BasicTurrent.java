@@ -1,22 +1,28 @@
+package Turrents;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class AreaTurrent extends Turrent {	
+import Enemies.Enemy;
+import Engine.Game;
+import Engine.Grid;
+
+public class BasicTurrent extends Turrent {
+	
 	private double currentCoolDown = 1;
 
-	public AreaTurrent() {
+	public BasicTurrent() {
 		image = defaultImage();
 
-		health = 200;
-		damage = 10;
+		health = 100;
+		damage = 20;
 		coolDown = 0.5;
-		maxHealth = 200;
-		regenPerSecond = 2;
-		cost = 300;
+		maxHealth = 100;
+		regenPerSecond = 1;
+		cost = 200;
 		
-		rangeSquared = (5*Grid.size)*(5*Grid.size);
+		rangeSquared = (8*Grid.size)*(8*Grid.size);
 	}
 	
 	@Override
@@ -26,7 +32,7 @@ public class AreaTurrent extends Turrent {
 		
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
-	    g2d.setColor(Color.blue);
+	    g2d.setColor(Color.yellow);
 	    g2d.fill(new Ellipse2D.Float(marginX,marginY,Grid.size-marginX-marginX-1,Grid.size-marginY-marginY-1));
 	    g2d.dispose();
 	    return image;		
@@ -39,11 +45,17 @@ public class AreaTurrent extends Turrent {
 		
 		if(currentCoolDown <= 0) {
 			currentCoolDown += coolDown;
+			int closestDistanceSquared = Integer.MAX_VALUE;
+			Enemy closestEnemy = null;
 			for(Enemy enemy : Game.enemies) {
-				if(enemy.distanceSquared(this) < rangeSquared) {
-					enemy.health -= damage;
+				if(enemy.distanceSquared(this) < closestDistanceSquared) {
+					closestEnemy = enemy;
+					closestDistanceSquared = enemy.distanceSquared(this);
 				}
 			}
+			
+			if(closestDistanceSquared < rangeSquared)
+				closestEnemy.health -= damage;
 		}
 	}
 }
