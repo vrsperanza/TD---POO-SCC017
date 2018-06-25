@@ -8,7 +8,9 @@ import Engine.Grid;
 import Turrents.Turrent;
 
 /**
- * Abstract class Enemy, contains health, speed, damage and reward information, as well as the default enemy behaviour
+ * Abstract class Enemy, contains health, speed, damage and reward information, as well as the default enemy behaviour.
+ * Default enemyes seek and destroy close turrents, aiming for the global target if there's no turent nearby.
+ * On death they give the player cash.
  */
 public abstract class Enemy extends GameObject {
 	public int health;

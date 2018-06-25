@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import Engine.Grid;
 
 /**
- * HugeEnemy is a enemy type, this class contains its image, health, speed, damage and value information.
+ * HugeEnemy is a enemy type, this class defines the enemy's image, health, speed, damage and value information.
  * When instantiated, this class generates a HugeEnemy
  */
 public class HugeEnemy extends Enemy {

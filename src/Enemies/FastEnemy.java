@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import Engine.Grid;
 
 /**
- * FastEnemy is a enemy type, this class defines the enemy's  image, health, speed, damage and value information.
+ * FastEnemy is a enemy type, this class defines the enemy's image, health, speed, damage and value information.
  * When instantiated, this class generates a FastEnemy
  */
 public class FastEnemy extends Enemy {
