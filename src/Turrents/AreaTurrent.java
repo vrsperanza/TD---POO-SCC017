@@ -8,6 +8,10 @@ import Enemies.Enemy;
 import Engine.Game;
 import Engine.Grid;
 
+/**
+ * AreaTurrent is a turrent type, this class defines the turrent's behaviour, image, health, speed, damage and value information.
+ * When instantiated, this class generates a AreaTurrent
+ */
 public class AreaTurrent extends Turrent {	
 	private double currentCoolDown = 1;
 

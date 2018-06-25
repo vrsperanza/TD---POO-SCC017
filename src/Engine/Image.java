@@ -8,7 +8,11 @@ import java.awt.image.ImageProducer;
 
 import javax.swing.GrayFilter;
 
+/**
+ * Image helper methods
+ */
 public class Image {
+	// Generates a BufferedImage from an image
 	public static BufferedImage toBufferedImage(java.awt.Image img)
 	{
 	    // Create a buffered image with transparency
@@ -22,7 +26,8 @@ public class Image {
 	    // Return the buffered image
 	    return bimage;
 	}
-	
+
+	// Turns the given image to its grayscale equivalent
 	public static BufferedImage toGray(BufferedImage colorImage){
 		ImageFilter filter = new GrayFilter(true, 50);  
 		ImageProducer producer = new FilteredImageSource(colorImage.getSource(), filter);  

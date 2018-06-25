@@ -12,6 +12,11 @@ import java.util.Queue;
 import Engine.Game;
 import Engine.ObjectType;
 
+/**
+ * This is the main game's input listener.
+ * It listens and enqueues user input for later processing.
+ * It processes all user input once the process function is called.
+ */
 public class Input implements MouseListener, KeyListener{
 	Queue<MouseEvent> mousePresses = new LinkedList<MouseEvent>();
 	Queue<KeyEvent> keyPresses = new LinkedList<KeyEvent>();

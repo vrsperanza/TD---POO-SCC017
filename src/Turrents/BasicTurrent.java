@@ -8,6 +8,10 @@ import Enemies.Enemy;
 import Engine.Game;
 import Engine.Grid;
 
+/**
+ * BasicTurrent is a turrent type, this class defines the turrent's behaviour, image, health, speed, damage and value information.
+ * When instantiated, this class generates a BasicTurrent
+ */
 public class BasicTurrent extends Turrent {
 	
 	private double currentCoolDown = 1;

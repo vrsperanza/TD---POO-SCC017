@@ -2,6 +2,10 @@ package Engine;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+/**
+ * Generic GameObject class, contains the GameObject's position and current image for rendering.
+ * Also contains the default abstract functions loop, instantiate, destroy and defaultImage which must be implemented by any GameObject
+ */
 public abstract class GameObject {
 	public Point position;
 	public BufferedImage image;

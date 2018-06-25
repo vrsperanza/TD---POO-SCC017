@@ -8,6 +8,9 @@ import Engine.Game;
 import Engine.GameObject;
 import Engine.ObjectType;
 
+/**
+ * Button class is an in-game GameObject that is sensible to clicks, triggering a different function depending on its id
+ */
 public class Button extends GameObject {
 	int id;
 	public Point position;

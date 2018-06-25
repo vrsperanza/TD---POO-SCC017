@@ -6,6 +6,10 @@ import java.awt.image.BufferedImage;
 
 import Engine.Grid;
 
+/**
+ * BasicEnemy is a enemy type, this class defines the enemy's its image, health, speed, damage and value information.
+ * When instantiated, this class generates a BasicEnemy
+ */
 public class BasicEnemy extends Enemy {
 	@Override
 	public BufferedImage defaultImage() {

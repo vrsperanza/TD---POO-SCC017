@@ -4,6 +4,10 @@ import java.awt.image.BufferedImage;
 import Engine.*;
 import Turrents.*;
 
+/**
+ * GameObject that follows the mouse in order to orient turrent placement.
+ * Once the place function is run this object disappears and places its respective turrent in its position, updating the player's money in the process
+ */
 public class PlacementObject extends GameObject {	
 	static PlacementObject placementObject = null;
 	static ObjectType objectType = null;

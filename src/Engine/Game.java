@@ -17,7 +17,10 @@ import Enemies.*;
 import Interface.*;
 import Turrents.*;
 
-
+/**
+ * Main execution class, knows all enemies, turrents and gameObjects.
+ * Handles the execution loop and rendering of all GameObjects
+ */
 public class Game{
 	public static HashSet<Enemy> enemies;
 	public static HashSet<Turrent> turrents;
@@ -47,6 +50,10 @@ public class Game{
 	
 	public static int money;
 	
+	/**
+	 * Generates the game's frame and canvas.
+	 *  
+	 */
 	public Game(){
 		random = new Random();
 		frame = new JFrame("Tower defence");
@@ -74,6 +81,10 @@ public class Game{
 		canvas.requestFocus();
 	}
 	
+	/**
+	 * Runs the game loop, at each iteration, processes the input, enemy spawns, loops all objects and buttons,
+	 * destroys and instantiates all prepared objects then restarts loop.
+	 */
 	public static void run(){
 		long lastLoopTime = System.nanoTime();
 		while(true){			
@@ -110,14 +121,17 @@ public class Game{
 		}
 	}
 	
+	// Prepares the given GameObject for instantiation
 	public static void instantiate(GameObject g) {
 		toInstantiate.add(g);
 	}
 	
+	// Prepares the given GameObject for destruction
 	public static void destroy(GameObject g) {
 		toDestroy.add(g);
 	}
 	
+	// Renders all gameObjects on screen, as well as displaying money, speed and difficulty texts
 	private static void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.setColor(Color.BLACK);
@@ -138,12 +152,14 @@ public class Game{
 		bufferStrategy.show();
 	}
 
+	// Stops the game for game over.
 	public static void over() {
 		System.out.println("GAME OVER");
 		speed = 0;
 		System.out.println("Aperte espaço para reiniciar");
 	}
 	
+	// Starts a new game
 	public static void start() {
 		elapsedTime = 0;
 		deltaTime = 0;

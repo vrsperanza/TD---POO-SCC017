@@ -7,6 +7,9 @@ import Engine.GameObject;
 import Engine.Grid;
 import Turrents.Turrent;
 
+/**
+ * Abstract class Enemy, contains health, speed, damage and reward information, as well as the default enemy behaviour
+ */
 public abstract class Enemy extends GameObject {
 	public int health;
 	int maxHealth;

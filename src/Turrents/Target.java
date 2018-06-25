@@ -7,6 +7,13 @@ import java.awt.image.BufferedImage;
 import Engine.Game;
 import Engine.Grid;
 
+/**
+ * Target is a turrent type, this class defines the turrent's behaviour, image, health, speed, damage and value information.
+ * When instantiated, this class generates a Target
+ * 
+ * For the game to run there must be a Target present for the enemies to seek when nothing else is in range,
+ * this is the enemies's ultimate goal and is what must be protected.
+ */
 public class Target extends Turrent {	
 	public BufferedImage defaultImage() {
 		BufferedImage image = new BufferedImage(Grid.size, Grid.size, BufferedImage.TYPE_4BYTE_ABGR);

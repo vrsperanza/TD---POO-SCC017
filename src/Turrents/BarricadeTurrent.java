@@ -5,6 +5,10 @@ import java.awt.image.BufferedImage;
 
 import Engine.Grid;
 
+/**
+ * BarricadeTurrent is a turrent type, this class defines the turrent's behaviour, image, health, speed, damage and value information.
+ * When instantiated, this class generates a BarricadeTurrent
+ */
 public class BarricadeTurrent extends Turrent {	
 
 	public BarricadeTurrent() {

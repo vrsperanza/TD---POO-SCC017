@@ -3,6 +3,9 @@ import java.awt.Point;
 
 import Enemies.*;
 
+/**
+ * This class handles enemy spawn, every time the spawn function runs, new enemies appear on the map, according to the time elapsed since the beggining of the game.
+ */
 public class Spawner {
 	public static double difficulty;
 	double basicEnemySpawn;

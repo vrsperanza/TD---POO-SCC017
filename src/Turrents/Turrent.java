@@ -6,6 +6,10 @@ import java.awt.Point;
 import Engine.*;
 import Interface.*;
 
+/**
+ * Abstract class Turrent, contains range, coolDown, damage, regeneration and cost information, as well as the default turrent behaviour.
+ * Default turrents cost an amount to be placed and defend from nearby enemies, being destroyed once they suffered enough damage.
+ */
 public abstract class Turrent extends GameObject{
 	public int health;
 	
