@@ -1,16 +1,16 @@
-Inimigos aparecem na parte esquerda da tela com o tempo   
-Não os deixe destruir seu ??? na parte direita da tela    
+This is a simple tower defence game implemented in java.  
+Once the game is started, enemies appear on the right side of the screen and you must defend your white tower on the left.  
   
-Tower Defence  
-1 - Colocar torre basica  
-2 - Colocar torre de ataque em area  
-3 - Colocar barreira  
+1 - Instantiates a basic turrent, costs 200  
+2 - Instantiates an area of effect turrent, costs 300  
+3 - Instantiates a barricade turrent, costs 100  
   
 P - Pause  
 R - Restart  
   
-UP - Aumentar velocidade do jogo  
-DOWN - Diminuir velocidade do jogo  
+UP - Increase game speed  
+DOWN - Decrease game speed  
   
-F1 - Dinheiro++  
-F2 - Tempo++  
+Cheats:  
+F1 - Money++  
+F2 - Difficulty++  
